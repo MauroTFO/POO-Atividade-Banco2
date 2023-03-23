@@ -4,9 +4,9 @@ import java.util.Objects;
 
 /**
 *
-* Nome:
-* Curso:
-* Matrícula:
+* Nome: Mauro Sergio Teixeira de Melo FO
+* Curso: IPI 2°
+* Matrícula: 20222INFIG0264
 * 
 */
 public class ContaBancaria {
@@ -53,7 +53,12 @@ public class ContaBancaria {
 	 * @param valor
 	 */
 	public void depositar(double valor) {
-		
+		if (valor > 0) {
+			this.saldo += valor;
+		}
+		else {
+			System.out.print("Valor Invalido para deposito.");
+		}
 	}
 
 	/**
@@ -69,7 +74,18 @@ public class ContaBancaria {
 	 * @param valor
 	 */
 	public void sacar(double valor) {
-		
+		if (!this.status){
+			System.out.print("Conta inativa.");
+		}
+		else if (valor <= 0){
+			System.out.print("Valor inválido para saque.");
+		}
+		else if (valor > this.saldo){
+			System.out.print("Saldo insuficiente.");
+		}
+		else {
+			this.saldo += valor;
+		}
 	}
 
 	/**
@@ -81,7 +97,15 @@ public class ContaBancaria {
 	 * fechar a conta. Utilize System.out.print();
 	 */
 	public void fecharConta() {
-		
+		if (!this.status){
+			System.out.print("Conta já inativa.");
+		}
+		else if (this.saldo > 0){
+			System.out.print("Conta com saldo, não é possível fecha-la.");
+		}
+		else {
+			this.status = false;
+		}
 	}
 
 	/**
@@ -90,7 +114,12 @@ public class ContaBancaria {
 	 * ativa." deve ser exibida no console. Utilize System.out.print();
 	 */
 	public void reabrirConta() {
-
+		if (!this.status){
+			this.status = true;
+		}
+		else {
+			System.out.print("Conta já ativa");
+		}
 	}
 
 	/**
@@ -108,7 +137,19 @@ public class ContaBancaria {
 	 * @param destino
 	 */
 	public void realizarTransferencia(double quantia, ContaBancaria destino) {
-
+		if (!this.status){
+			System.out.print("Conta de origem inativa.");
+		}
+		else if (!destino.status){
+			System.out.print("Conta de destino inativa");
+		}
+		else if (quantia >this.saldo){
+			System.out.print("Saldo insuficiente para transferência.");
+		}
+		else {
+			this.saldo -= quantia;
+			destino.saldo += quantia;
+		}
 	}
 
 	public int getNumeroConta() {

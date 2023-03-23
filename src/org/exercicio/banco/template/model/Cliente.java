@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 /**
 *
-* Nome:
-* Curso:
-* Matrícula:
+* Nome: Mauro Sergio Teixeira de Melo FO
+* Curso: IPI 2°
+* Matrícula: 20222INFIG0264
 * 
 */
 public class Cliente {
@@ -31,8 +31,12 @@ public class Cliente {
      * @param c
      */
     public void adicionarConta(ContaBancaria c) {
-
-    }
+    	for (int i = 0; i < contas.size(); i++) {
+    		if (arrayList.equals()) {
+    			System.out.print("A conta já está associada a este cliente.");
+    		}
+    	}
+    }	
 
     
     /**
