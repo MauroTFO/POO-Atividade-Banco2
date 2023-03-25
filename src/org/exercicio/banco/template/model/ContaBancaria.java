@@ -98,10 +98,10 @@ public class ContaBancaria {
 	 */
 	public void fecharConta() {
 		if (!this.status){
-			System.out.print("Conta já inativa.");
+			System.out.print("Conta ja inativa.");
 		}
 		else if (this.saldo > 0){
-			System.out.print("Conta com saldo, não é possível fecha-la.");
+			System.out.print("Conta com saldo. Nao eh possivel fecha-la");
 		}
 		else {
 			this.status = false;
@@ -144,7 +144,7 @@ public class ContaBancaria {
 			System.out.print("Conta de destino inativa");
 		}
 		else if (quantia >this.saldo){
-			System.out.print("Saldo insuficiente para transferência.");
+			System.out.print("Saldo insuficiente para transferencia.");
 		}
 		else {
 			this.saldo -= quantia;
@@ -168,21 +168,26 @@ public class ContaBancaria {
 		return status;
 	}
 
-	/**
-	 * Implemente o mehtodo hashCode
-	 */
 	@Override
 	public int hashCode() {
-		return 0;
+		return Objects.hash(numeroConta, saldo, status, titular);
 	}
 
-	/**
-	 * Implemente o mehtodo equals
-	 */
 	@Override
 	public boolean equals(Object obj) {
-		return false;
-	}
-	
-	
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContaBancaria other = (ContaBancaria) obj;
+		return numeroConta == other.numeroConta
+				&& Double.doubleToLongBits(saldo) == Double.doubleToLongBits(other.saldo) && status == other.status
+				&& Objects.equals(titular, other.titular);
+	}	
 }
+
+
+
+
